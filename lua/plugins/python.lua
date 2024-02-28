@@ -1,18 +1,25 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
     opts = {
+      ---@type lspconfig.options
       servers = {
         pyright = {
           cmd = { "pyright-langserver", "--stdio" },
           filetypes = { "python" },
           settings = {
             python = {
+              pyright = {
+                disableLanguageServices = false,
+                disableOrganizeImports = false,
+              },
               analysis = {
+                autoImportCompletions = true,
                 autoSearchPaths = true,
-                useLibraryCodeForTypes = false,
-                diagnosticMode = "workspace",
-                typeCheckingMode = "basic",
+                diagnosticMode = "workspace", -- openFilesOnly, workspace
+                typeCheckingMode = "basic", -- off, basic, strict
+                useLibraryCodeForTypes = true,
               },
             },
           },
